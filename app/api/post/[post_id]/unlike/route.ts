@@ -13,7 +13,7 @@ export async function POST(
     try {
         await connectDb();
         const { id }: UNlikePostBody = await req.json();
-        const postId = params.post_id; // No need to await params
+        const postId = (await params).post_id; // No need to await params
 
         const post = await Post.findById(postId);
         if (!post) {

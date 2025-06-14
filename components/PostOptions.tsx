@@ -1,10 +1,12 @@
 'use client';
 import { IPostDocument } from '@/db/models/post'
-import { useUser } from '@clerk/nextjs'
+import { SignedIn, useUser } from '@clerk/nextjs'
 import React, { useEffect, useState } from 'react'
 import { Button } from './ui/button';
 import { MessageCircle, Repeat, Send, ThumbsUp } from 'lucide-react';
-import { UNlikePostBody } from '@/app/api/post/[post_id]/unlike/page';
+import { UNlikePostBody } from '@/app/api/post/[post_id]/unlike/route';
+import CommentForm from './CommentFeed';
+import CommentFeed from './CommentFeed';
 
 interface LikeActionBody {
     id: string;
@@ -119,6 +121,23 @@ const PostOptions = ({ post }: { post: IPostDocument }) => {
                     Send
                 </Button>
             </div>
+
+            {
+                isCommentsOpen && (
+                    <div className='p-4'>
+
+                        {
+                            (
+                                <SignedIn>
+
+                                    <CommentFeed post={post}></CommentFeed>
+                                </SignedIn>
+                            )
+                        }
+                    </div>
+
+                )
+            }
         </div>
     );
 }

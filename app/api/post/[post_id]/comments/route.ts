@@ -2,6 +2,7 @@ import connectDb from "@/db/connecDb";
 import { ICommentbase } from "@/db/models/comment";
 import { Post } from "@/db/models/post";
 import { IUser } from "@/types/user";
+import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 
@@ -43,6 +44,8 @@ export async function POST(req: NextRequest, { params }: { params: { post_id: st
 
     const { user, text }: CommentAddBody = await req.json();
 
+
+
     try {
 
         const post = await Post.findById(params.post_id)
@@ -58,6 +61,7 @@ export async function POST(req: NextRequest, { params }: { params: { post_id: st
 
         await post.commentOnPost(comment);
         return NextResponse.json({ message: "comment added successfully" })
+        revalidatePath('/')
 
 
     } catch (error) {

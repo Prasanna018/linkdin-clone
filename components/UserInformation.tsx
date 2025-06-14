@@ -3,10 +3,14 @@ import React from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { SignedIn, SignedOut, SignInButton } from '@clerk/nextjs';
 import { Button } from './ui/button';
+import { Post } from '@/db/models/post';
 
 const UserInformation = async () => {
     const user = await currentUser();
-    // console.log(user)
+
+
+
+
     return (
         <div className='flex flex-col justify-center items-center bg-white mr-6 rounded-lg border py-4'>
             <Avatar>

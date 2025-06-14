@@ -4,8 +4,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest, { params }: { params: { post_id: string } }) {
     await connectDb();
+    const postId = await params.post_id
     try {
-        const post = await Post.findById(params.post_id);
+        const post = await Post.findById(postId);
         if (!post) {
             return NextResponse.json({
                 error: "Post not found"

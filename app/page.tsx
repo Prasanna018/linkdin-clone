@@ -18,7 +18,7 @@ const Home = async () => {
     <div className='grid grid-cols-8 sm:mx-5 mt-5'>
       {/* left side user info */}
       <section className='hidden md:col-span-2 md:inline' >
-        <UserInformation></UserInformation>
+        <UserInformation  ></UserInformation>
 
       </section >
       {/* middle posts and feeds */}

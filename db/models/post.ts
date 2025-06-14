@@ -55,7 +55,7 @@ const PostSchema = new Schema<IPostDocument>({
     }
 }, {
     timestamps: true,
-    strict: false
+
 });
 
 PostSchema.methods.likePost = async function (userId: string) {
